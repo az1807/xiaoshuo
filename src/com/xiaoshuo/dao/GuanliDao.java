@@ -2,12 +2,14 @@ package com.xiaoshuo.dao;
 
 import java.util.ArrayList;
 
-import javax.xml.registry.infomodel.User;
+
+
+import com.xiaoshuo.entity.GuanLi;
 
 
 
 public interface GuanliDao {
-	boolean insertUser(String name,String password);
-	ArrayList<User> selectUsers();
-	User selectUserByName(String name);
+	boolean insertGuanLi(String name,String password);
+	ArrayList<GuanLi> selectGuanLi();
+	GuanLi selectGuanLiByName(String name);
 }

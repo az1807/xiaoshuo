@@ -33,53 +33,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <header>
-    <div class="header-top">
-        <div class="width-center">
-            <div class="header-logo "><img src="images/logo.png" alt=""></div>
-            <div class="header-title div-inline">
-                <strong>
-                <%
-               XinXi gongsi = (XinXi)request.getAttribute("XinXi");
-                 %>
-                 
-                 <%=gongsi.getName() %>
-                </strong>
-                <span>
-                 <strong>
-                 
-                 <%=gongsi.getWangzhi() %>
-                </span>
-            </div>
-
-            <div class="search-box div-inline">
-                <div class="input-box"><input type="text" name="" placeholder="             请输入关键字"></div>
-                <div class="search-botton"></div>
-            </div>
-        </div>
-    </div>
-    <div class="header-nav">
-        <button class="am-show-sm-only am-collapsed font f-btn" data-am-collapse="{target: '.header-nav'}">Menu <i
-                class="am-icon-bars"></i></button>
-        <nav>
-        <ul class="header-nav-ul am-collapse am-in">
-            <li class="on"><a href="index.html" name="index">首页</a></li>
-            <li><a href="about.html" name="about">关于我们</a></li>
-            <li><a href="productlist.html" name="show">产品展示</a></li>
-            <li><a href="article_list.html" name="new">新闻资讯</a></li>
-            <li><a href="contact.html" name="message">联系我们</a>
-                <div class="secondary-menu">
-
-                    <ul><li><a href="message.html" class="message"></a></li></ul>
-                </div>
-            </li>
-        </ul>
-
-
-
-
-        </nav>
-    </div>
-
+    <jsp:include page="yemei.jsp"></jsp:include>
+ 
 </header>
 <div class="am-slider am-slider-default" data-am-flexslider="{playAfterPaused: 8000}">
     <ul class="am-slides">
@@ -120,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="about-rightbox">
             <h1>企业文化</h1>
             <p>CORPORATE CULTURE</p>
-            <article>我们的家居一直秉承绿色的核心理念，以“贴近生活、用心服务、用爱做事”为企业核心文化价值。所有家具确保以最环保、安全、绿色为基础色调和核心基因，全心全意为您打造一个安全的、贴心的、精致的生活空间，环保、安全、精致不仅是对产品的用心打造，更是对员工、事业伙伴、用户、社会的责任和担当。</article>
+            <article> </article>
         </div>
     </div>
 
@@ -161,32 +116,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 ﻿<footer>
-    <div>
-        <div class="footer-info">
-            <div class="footer-content">
-                <img src="images/qccode.png" alt="">
-               <div>
-                <p>招商热线:
-                 <%=gongsi.getRexian() %>
-                </p>
-                <div class="footer-box">
-                    <i class="icon-tel"></i>
-                    <span>公司电话:</span>
-                    <span> <%=gongsi.getPhone() %></span>
-                </div>
-                <div class="footer-box">
-                    <i class="icon-email"></i>
-                    <span>公司邮箱:</span>
-                    <span> <%=gongsi.getEmail() %></span>
-                </div>
-                <div class="footer-box">
-                    <i class="icon-address"></i>
-                    <span>公司地址:</span>
-                    <span><%=gongsi.getDizhi() %></span>
-                </div>
-               </div>
-            </div>
-        </div>
+    <jsp:include page="yejiao.jsp"></jsp:include>
+    
         <style>
         .footer-bottom a{color:#F1404B}
         </style>

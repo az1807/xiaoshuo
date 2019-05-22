@@ -33,19 +33,22 @@ public class GuanLiServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		out.println("  <BODY>");
-		out.print("    This is ");
-		out.print(this.getClass());
-		out.println(", using the GET method");
-		out.println("  </BODY>");
-		out.println("</HTML>");
-		out.flush();
-		out.close();
+		
+		String username = request.getParameter("yhm");
+		String pwd = request.getParameter("mm");
+
+		GuanliDao ud = new GuanLiDaoImpl();
+		GuanLi user = (GuanLi) ud.selectGuanLiByName(username);
+
+		if (user != null && user.getPassword().equals(pwd)) { //µÇÂ¼³É¹¦
+		    request.getRequestDispatcher("/hotai/index.html").forward(request, response);
+			return;
+		}
+		//µÇÂ¼Ê§°Ü
+		response.sendRedirect("/xiaoshuo/hotai/login.html");
 	}
 
 	/**
@@ -61,17 +64,20 @@ public class GuanLiServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		String username = request.getParameter("name");
-		String pwd = request.getParameter("password");
+		String username = request.getParameter("yhm");
+		String pwd = request.getParameter("mm");
 
 		GuanliDao ud = new GuanLiDaoImpl();
-		GuanLi user = (GuanLi) ud.selectUserByName(username);
-
+		GuanLi user = (GuanLi) ud.selectGuanLiByName(username);
+		
+        System.out.println(user);
+        
 		if (user != null && user.getPassword().equals(pwd)) { //µÇÂ¼³É¹¦
-			request.getRequestDispatcher("/hotai/index.html").forward(request, response);
+		    request.getRequestDispatcher("/hotai/index.html").forward(request, response);
 			return;
 		}
 		//µÇÂ¼Ê§°Ü

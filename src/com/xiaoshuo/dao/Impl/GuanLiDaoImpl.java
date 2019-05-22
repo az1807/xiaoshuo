@@ -15,18 +15,18 @@ import com.xiaoshuo.util.DBManager;
 
 public class GuanLiDaoImpl implements GuanliDao{
 
-
-	public boolean insertUser(String name, String password) {
-		int n = DBManager.updateSQL("insert guanliyuan (name,password)  values ('"
+	
+	public boolean insertGuanLi(String name, String password) {
+		int n = DBManager.updateSQL("insert user (username,password)  values ('"
 				+ name + "','" + password + "')");
 		if (n == 1) {
 			return true;
 		}
 		return false;
 	}
-
-	public ArrayList<User> selectUsers() {
-		ArrayList<User> users = new ArrayList<User>();
+	
+	public ArrayList<GuanLi> selectGuanLi() {
+		ArrayList<GuanLi> gl = new ArrayList<GuanLi>();
 
 		ResultSet rs = DBManager.querySQL("select * from guanliyuan");
 		if (rs != null) {
@@ -36,7 +36,7 @@ public class GuanLiDaoImpl implements GuanliDao{
 					u.setId(rs.getInt("id"));
 					u.setName(rs.getString("name"));
 					u.setPassword(rs.getString("password"));
-					users.add((User) u);
+					gl.add(u);
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -44,11 +44,11 @@ public class GuanLiDaoImpl implements GuanliDao{
 			}
 		}
 
-		return users;
+		return gl;
 	}
 		
 
-	public User selectUserByName(String name) {
+	public GuanLi selectGuanLiByName(String name) {
 		ResultSet rs = DBManager.querySQL("select * from guanliyuan where name = '" + name + "'");
 		if (rs != null) {
 			try {
@@ -58,7 +58,7 @@ public class GuanLiDaoImpl implements GuanliDao{
 					u.setName(rs.getString("name"));
 					u.setPassword(rs.getString("password"));
 					u.setEmail(rs.getString("email"));
-					return  (User) u;
+					return  u;
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -68,4 +68,6 @@ public class GuanLiDaoImpl implements GuanliDao{
 
 		return null;
 	}
+
+
 	}
